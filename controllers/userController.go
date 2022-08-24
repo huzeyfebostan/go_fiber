@@ -10,12 +10,12 @@ import (
 func AllUsers(c *fiber.Ctx) error {
 	var users []models.User
 
-	database.DB.Find(&users)
+	database.DB.Preload("Role").Find(&users)
 
 	return c.JSON(users)
-}
+} //bütün kullanıcıları getirir
 
-func CreateUsers(c *fiber.Ctx) error {
+func CreateUser(c *fiber.Ctx) error {
 	var user models.User
 
 	if err := c.BodyParser(&user); err != nil {
@@ -28,7 +28,7 @@ func CreateUsers(c *fiber.Ctx) error {
 
 	return c.JSON(&user)
 
-}
+} //yeni kullanıcı
 
 func GetUser(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -37,10 +37,10 @@ func GetUser(c *fiber.Ctx) error {
 		Id: uint(id),
 	}
 
-	database.DB.Find(&user)
+	database.DB.Preload("Role ").Find(&user)
 
 	return c.JSON(user)
-}
+} //id'si girilen kullanıcıyı getirir
 
 func UpdateUser(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -56,7 +56,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	database.DB.Model(&user).Updates(user)
 
 	return c.JSON(user)
-}
+} //kullanıcı bilgilerini günceller
 
 func DeleteUser(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -68,4 +68,4 @@ func DeleteUser(c *fiber.Ctx) error {
 	database.DB.Delete(user)
 
 	return nil
-}
+} //kullanıcı siler

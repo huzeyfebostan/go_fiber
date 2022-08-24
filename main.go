@@ -10,14 +10,14 @@ import (
 func main() {
 	database.Connect() //veritabanını bağlıyoruz
 
-	app := fiber.New()
+	app := fiber.New() //serveri başlatır
 
 	app.Use(cors.New(cors.Config{
 		AllowCredentials: true,
 	}))
 
-	routes.Setup(app)
+	routes.Setup(app) //sayfaları ayarlar
 
-	app.Listen(":8000")
+	app.Listen(":8000") //8000 portunu dinler
 
 }
