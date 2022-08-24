@@ -16,5 +16,5 @@ func Connect() {
 	}
 
 	DB = database
-	database.AutoMigrate(&models.User{}, &models.Role{}) //veritabanında tablo oluşturuyor
+	database.AutoMigrate(&models.User{}, &models.Role{}, &models.Permission{}) //veritabanında tablo oluşturuyor
 }
