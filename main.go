@@ -2,14 +2,19 @@ package main
 
 import (
 	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/middleware/cors"
 	"github.com/huzeyfebostan/golang_practice/database"
 	"github.com/huzeyfebostan/golang_practice/routes"
 )
 
 func main() {
-	database.Connect()
+	database.Connect() //veritabanını bağlıyoruz
 
 	app := fiber.New()
+
+	app.Use(cors.New(cors.Config{
+		AllowCredentials: true,
+	}))
 
 	routes.Setup(app)
 
