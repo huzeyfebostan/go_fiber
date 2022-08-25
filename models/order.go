@@ -35,5 +35,17 @@ func (order *Order) Take(db *gorm.DB, limit int, offset int) interface{} {
 
 	db.Preload("OrderItems").Offset(offset).Limit(limit).Find(&orders)
 
+	for i, _ := range orders {
+		orders[i].Name = orders[i].FirstName + " " + orders[i].LastName
+
+		var total float32 = 0
+
+		for _, orderItem := range orders[i].OrderItems {
+			total += orderItem.Price * float32(orderItem.Quantity)
+		}
+		orders[i].Name = orders[i].FirstName + " " + orders[i].LastName
+		orders[i].Total = total
+	}
+
 	return orders
 }
