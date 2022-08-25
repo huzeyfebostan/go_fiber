@@ -43,4 +43,5 @@ func Setup(app *fiber.App) {
 
 	app.Get("/api/orders", controllers.AllOrders)
 	app.Post("/api/export", controllers.Export)
+	app.Get("/api/chart", controllers.Chart)
 } //localhost'ta farklı sayfalar oluşturur

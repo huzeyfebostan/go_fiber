@@ -3,17 +3,25 @@ package controllers
 import (
 	"github.com/gofiber/fiber"
 	"github.com/huzeyfebostan/golang_practice/database"
+	"github.com/huzeyfebostan/golang_practice/middlewares"
 	"github.com/huzeyfebostan/golang_practice/models"
 	"strconv"
 )
 
 func AllUsers(c *fiber.Ctx) error {
+	if err := middlewares.IsAuthorized(c, "users"); err != nil {
+		return err
+	}
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 
-	return c.JSON(models.Paginate(database.DB, &models.Product{}, page))
+	return c.JSON(models.Paginate(database.DB, &models.User{}, page))
 } //bütün kullanıcıları getirir
 
 func CreateUser(c *fiber.Ctx) error {
+	if err := middlewares.IsAuthorized(c, "users"); err != nil {
+		return err
+	}
+	
 	var user models.User
 
 	if err := c.BodyParser(&user); err != nil {
@@ -29,6 +37,10 @@ func CreateUser(c *fiber.Ctx) error {
 } //yeni kullanıcı
 
 func GetUser(c *fiber.Ctx) error {
+	if err := middlewares.IsAuthorized(c, "users"); err != nil {
+		return err
+	}
+
 	id, _ := strconv.Atoi(c.Params("id"))
 
 	user := models.User{
@@ -41,6 +53,10 @@ func GetUser(c *fiber.Ctx) error {
 } //id'si girilen kullanıcıyı getirir
 
 func UpdateUser(c *fiber.Ctx) error {
+	if err := middlewares.IsAuthorized(c, "users"); err != nil {
+		return err
+	}
+
 	id, _ := strconv.Atoi(c.Params("id"))
 
 	user := models.User{
@@ -57,6 +73,10 @@ func UpdateUser(c *fiber.Ctx) error {
 } //kullanıcı bilgilerini günceller
 
 func DeleteUser(c *fiber.Ctx) error {
+	if err := middlewares.IsAuthorized(c, "users"); err != nil {
+		return err
+	}
+
 	id, _ := strconv.Atoi(c.Params("id"))
 
 	user := models.User{
