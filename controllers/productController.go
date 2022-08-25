@@ -7,63 +7,61 @@ import (
 	"strconv"
 )
 
-func AllUsers(c *fiber.Ctx) error {
+func AllProducts(c *fiber.Ctx) error {
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 
 	return c.JSON(models.Paginate(database.DB, &models.Product{}, page))
 } //bütün kullanıcıları getirir
 
-func CreateUser(c *fiber.Ctx) error {
-	var user models.User
+func CreateProduct(c *fiber.Ctx) error {
+	var product models.Product
 
-	if err := c.BodyParser(&user); err != nil {
+	if err := c.BodyParser(&product); err != nil {
 		return err
 	}
 
-	user.SetPassword("1234")
+	database.DB.Create(&product)
 
-	database.DB.Create(&user)
-
-	return c.JSON(&user)
+	return c.JSON(&product)
 
 } //yeni kullanıcı
 
-func GetUser(c *fiber.Ctx) error {
+func GetProduct(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
 
-	user := models.User{
+	product := models.Product{
 		Id: uint(id),
 	}
 
-	database.DB.Preload("Role ").Find(&user)
+	database.DB.Find(&product)
 
-	return c.JSON(user)
+	return c.JSON(product)
 } //id'si girilen kullanıcıyı getirir
 
-func UpdateUser(c *fiber.Ctx) error {
+func UpdateProduct(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
 
-	user := models.User{
+	product := models.Product{
 		Id: uint(id),
 	}
 
-	if err := c.BodyParser(&user); err != nil {
+	if err := c.BodyParser(&product); err != nil {
 		return err
 	}
 
-	database.DB.Model(&user).Updates(user)
+	database.DB.Model(&product).Updates(product)
 
-	return c.JSON(user)
+	return c.JSON(product)
 } //kullanıcı bilgilerini günceller
 
-func DeleteUser(c *fiber.Ctx) error {
+func DeleteProduct(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
 
-	user := models.User{
+	product := models.Product{
 		Id: uint(id),
 	}
 
-	database.DB.Delete(user)
+	database.DB.Delete(product)
 
 	return nil
 } //kullanıcı siler
