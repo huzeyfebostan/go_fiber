@@ -11,7 +11,7 @@ func AllProducts(c *fiber.Ctx) error {
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 
 	return c.JSON(models.Paginate(database.DB, &models.Product{}, page))
-} //bütün kullanıcıları getirir
+}
 
 func CreateProduct(c *fiber.Ctx) error {
 	var product models.Product
@@ -24,7 +24,7 @@ func CreateProduct(c *fiber.Ctx) error {
 
 	return c.JSON(&product)
 
-} //yeni kullanıcı
+}
 
 func GetProduct(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -36,7 +36,7 @@ func GetProduct(c *fiber.Ctx) error {
 	database.DB.Find(&product)
 
 	return c.JSON(product)
-} //id'si girilen kullanıcıyı getirir
+}
 
 func UpdateProduct(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -52,7 +52,7 @@ func UpdateProduct(c *fiber.Ctx) error {
 	database.DB.Model(&product).Updates(product)
 
 	return c.JSON(product)
-} //kullanıcı bilgilerini günceller
+}
 
 func DeleteProduct(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -64,4 +64,4 @@ func DeleteProduct(c *fiber.Ctx) error {
 	database.DB.Delete(product)
 
 	return nil
-} //kullanıcı siler
+}

@@ -35,7 +35,7 @@ func Register(c *fiber.Ctx) error {
 	database.DB.Create(&user)
 
 	return c.JSON(user)
-} //kullanıcı kayıdı
+}
 
 func Login(c *fiber.Ctx) error {
 	var data map[string]string
@@ -80,7 +80,7 @@ func Login(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
 		"message": "succes",
 	})
-} //kullanıcı giriş işlemleri
+}
 
 func User(c *fiber.Ctx) error {
 	cookie := c.Cookies("jwt")
@@ -92,7 +92,7 @@ func User(c *fiber.Ctx) error {
 	database.DB.Where("id = ?", id).First(&user)
 
 	return c.JSON(user)
-} //giriş yapan kullanıcının bilgilerini getirir
+}
 
 func Logout(c *fiber.Ctx) error {
 	cookie := fiber.Cookie{
@@ -107,7 +107,7 @@ func Logout(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
 		"message": "succes",
 	})
-} //kullanıcı çıkış işlemleri
+}
 
 func UpdateInfo(c *fiber.Ctx) error {
 	var data map[string]string
@@ -132,7 +132,7 @@ func UpdateInfo(c *fiber.Ctx) error {
 	database.DB.Model(&user).Updates(user)
 
 	return c.JSON(user)
-} //giriş yapan kullanıcının bilgilerini güncellemesi
+}
 
 func UpdatePassword(c *fiber.Ctx) error {
 	var data map[string]string
@@ -163,4 +163,4 @@ func UpdatePassword(c *fiber.Ctx) error {
 	database.DB.Model(&user).Updates(user)
 
 	return c.JSON(user)
-} //giriş yapan kullanıcının şifresini güncellemesi
+}

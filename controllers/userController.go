@@ -15,13 +15,13 @@ func AllUsers(c *fiber.Ctx) error {
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 
 	return c.JSON(models.Paginate(database.DB, &models.User{}, page))
-} //bütün kullanıcıları getirir
+}
 
 func CreateUser(c *fiber.Ctx) error {
 	if err := middlewares.IsAuthorized(c, "users"); err != nil {
 		return err
 	}
-	
+
 	var user models.User
 
 	if err := c.BodyParser(&user); err != nil {
@@ -34,7 +34,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 	return c.JSON(&user)
 
-} //yeni kullanıcı
+}
 
 func GetUser(c *fiber.Ctx) error {
 	if err := middlewares.IsAuthorized(c, "users"); err != nil {
@@ -50,7 +50,7 @@ func GetUser(c *fiber.Ctx) error {
 	database.DB.Preload("Role ").Find(&user)
 
 	return c.JSON(user)
-} //id'si girilen kullanıcıyı getirir
+}
 
 func UpdateUser(c *fiber.Ctx) error {
 	if err := middlewares.IsAuthorized(c, "users"); err != nil {
@@ -70,7 +70,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	database.DB.Model(&user).Updates(user)
 
 	return c.JSON(user)
-} //kullanıcı bilgilerini günceller
+}
 
 func DeleteUser(c *fiber.Ctx) error {
 	if err := middlewares.IsAuthorized(c, "users"); err != nil {
@@ -86,4 +86,4 @@ func DeleteUser(c *fiber.Ctx) error {
 	database.DB.Delete(user)
 
 	return nil
-} //kullanıcı siler
+}

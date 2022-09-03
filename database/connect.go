@@ -9,12 +9,12 @@ import (
 var DB *gorm.DB
 
 func Connect() {
-	database, err := gorm.Open(mysql.Open("root:hoze2626@/golang_practice"), &gorm.Config{}) //veritabanını açar 1.parametre kullanıcı adı 2.parametre şifre 3.parametre veritabanı ismi
+	database, err := gorm.Open(mysql.Open("root:hoze2626@/golang_practice"), &gorm.Config{})
 
 	if err != nil {
 		panic("Veritabanına bağlanılamadı !!!")
 	}
 
 	DB = database
-	database.AutoMigrate(&models.User{}, &models.Role{}, &models.Permission{}, &models.Product{}, &models.Order{}, &models.OrderItem{}) //veritabanında tablo oluşturuyor
+	database.AutoMigrate(&models.User{}, &models.Role{}, &models.Permission{}, &models.Product{}, &models.Order{}, &models.OrderItem{})
 }

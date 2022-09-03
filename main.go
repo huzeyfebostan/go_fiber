@@ -8,16 +8,15 @@ import (
 )
 
 func main() {
-	database.Connect() //veritabanını bağlıyoruz
+	database.Connect()
 
-	app := fiber.New() //serveri başlatır
+	app := fiber.New()
 
 	app.Use(cors.New(cors.Config{
 		AllowCredentials: true,
 	}))
 
-	routes.Setup(app) //sayfaları ayarlar
+	routes.Setup(app)
 
-	app.Listen(":8000") //8000 portunu dinler
-
+	app.Listen(":8000")
 }

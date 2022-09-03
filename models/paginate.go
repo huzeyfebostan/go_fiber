@@ -20,6 +20,6 @@ func Paginate(db *gorm.DB, entity Entity, page int) fiber.Map {
 			"total":     total,
 			"page":      page,
 			"last_page": math.Ceil(float64(int(total) / limit)),
-		}, //sayfa numarası
+		},
 	}
 }

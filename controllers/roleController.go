@@ -13,7 +13,7 @@ func AllRoles(c *fiber.Ctx) error {
 	database.DB.Find(&roles)
 
 	return c.JSON(roles)
-} //bütün rolleri getirir
+}
 
 func CreateRole(c *fiber.Ctx) error {
 	var roleDto fiber.Map
@@ -55,7 +55,7 @@ func GetRole(c *fiber.Ctx) error {
 	database.DB.Preload("Permissions").Find(&role)
 
 	return c.JSON(role)
-} //id'si girilen rolü getirir
+}
 
 func UpdateRole(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -90,7 +90,7 @@ func UpdateRole(c *fiber.Ctx) error {
 	database.DB.Model(&role).Updates(role)
 
 	return c.JSON(role)
-} //rolun bilgilerini güncelle
+}
 
 func DeleteRole(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
@@ -102,4 +102,4 @@ func DeleteRole(c *fiber.Ctx) error {
 	database.DB.Delete(role)
 
 	return nil
-} //rol siler
+}

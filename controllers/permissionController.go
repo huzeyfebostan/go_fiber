@@ -12,4 +12,4 @@ func AllPermissions(c *fiber.Ctx) error {
 	database.DB.Find(&permission)
 
 	return c.JSON(permission)
-} //bütün izinler
+}
