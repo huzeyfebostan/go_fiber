@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/gofiber/fiber"
-	"github.com/huzeyfebostan/golang_practice/controllers"
-	"github.com/huzeyfebostan/golang_practice/middlewares"
+	"github.com/huzeyfebostan/go_fiber/controllers"
+	"github.com/huzeyfebostan/go_fiber/middlewares"
 )
 
 func Setup(app *fiber.App) {

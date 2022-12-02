@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/huzeyfebostan/golang_practice/models"
+	"github.com/huzeyfebostan/go_fiber/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

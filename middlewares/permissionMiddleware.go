@@ -3,9 +3,9 @@ package middlewares
 import (
 	"errors"
 	"github.com/gofiber/fiber"
-	"github.com/huzeyfebostan/golang_practice/database"
-	"github.com/huzeyfebostan/golang_practice/models"
-	"github.com/huzeyfebostan/golang_practice/util"
+	"github.com/huzeyfebostan/go_fiber/database"
+	"github.com/huzeyfebostan/go_fiber/models"
+	"github.com/huzeyfebostan/go_fiber/util"
 	"strconv"
 )
 

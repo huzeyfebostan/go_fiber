@@ -3,8 +3,8 @@ package controllers
 import (
 	"encoding/csv"
 	"github.com/gofiber/fiber"
-	"github.com/huzeyfebostan/golang_practice/database"
-	"github.com/huzeyfebostan/golang_practice/models"
+	"github.com/huzeyfebostan/go_fiber/database"
+	"github.com/huzeyfebostan/go_fiber/models"
 	"os"
 	"strconv"
 )
