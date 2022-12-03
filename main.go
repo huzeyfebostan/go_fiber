@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/gofiber/fiber"
 	"github.com/gofiber/fiber/middleware/cors"
-	"github.com/huzeyfebostan/golang_practice/database"
-	"github.com/huzeyfebostan/golang_practice/routes"
+	"github.com/huzeyfebostan/go_fiber/database"
+	"github.com/huzeyfebostan/go_fiber/routes"
 )
 
 func main() {
